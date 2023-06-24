@@ -15,8 +15,7 @@ class validator {
         taskInfo.hasOwnProperty('completed') &&
         this.validTitle(taskInfo) &&
         this.validDesc(taskInfo) &&
-        this.validStatus(taskInfo) &&
-        this.uniqueTaskId(taskInfo, taskData)
+        this.validStatus(taskInfo) 
        ) {
           return {
             "status": true,

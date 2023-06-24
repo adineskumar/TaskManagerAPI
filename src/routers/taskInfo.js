@@ -38,7 +38,7 @@ taskRoutes.get('/:id', (request, response) => {
 
 taskRoutes.post('/', (request, response) => {
   let taskInfoPassed = request.body;
-  if (validator.validateTaskInfo(taskInfoPassed,taskInMemory).status) {
+  if (validator.validateTaskInfo(taskInfoPassed,taskInMemory).status && validator.uniqueTaskId(taskInfoPassed,taskInMemory)) {
     // taskInfoPassed.forEach(item => taskInMemory.push(item));
     taskInMemory.push(taskInfoPassed);
     response.status(200).json({"message": "task added"});
