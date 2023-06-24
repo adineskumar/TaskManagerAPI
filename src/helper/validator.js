@@ -51,12 +51,12 @@ class validator {
   }
 
   static validTitle(taskInfo) {
-    if (taskInfo.title) return true;
+    if (taskInfo.hasOwnProperty('title')) return true;
     return false;
   }
 
   static validDescription(taskInfo) {
-    if (taskInfo.description) return true;
+    if (taskInfo.hasOwnProperty('description')) return true;
     return false;
   }
 
