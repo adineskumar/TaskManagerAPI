@@ -1,0 +1,32 @@
+{
+  "tasks" : [
+    {
+      "id": 1,
+      "title": "task-1",
+      "description": "First Task",
+      "completed": true,
+      "priority": "low"
+    },
+    {
+      "id": 2,
+      "title": "task-2",
+      "description": "Second Task",
+      "completed": true,
+      "priority": "medium"
+    },
+    {
+      "id": 3,
+      "title": "task-3",
+      "description": "Third Task",
+      "completed": false,
+      "priority": "high"
+    },
+    {
+      "id": 4,
+      "title": "task-4",
+      "description": "Fourth Task",
+      "completed": true,
+      "priority": "low"
+    }
+  ]
+}
