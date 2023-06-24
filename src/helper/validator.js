@@ -1,12 +1,20 @@
 class validator {
   static validateTaskInfo(taskInfo, taskData) {
-    if (taskInfo.id && 
-        taskInfo.title &&
-        taskInfo.description &&
-        taskInfo.completed &&
-        taskInfo.priority && 
+    console.log('ID :', taskInfo.hasOwnProperty('id'));
+    console.log('TITLE :', taskInfo.hasOwnProperty('title'));
+    console.log('VALID TITLE :', this.validTitle(taskInfo));
+    console.log('DESC :', taskInfo.hasOwnProperty('description'));
+    console.log('VALID DESC :', this.validDesc(taskInfo));
+    console.log('STATUS :', this.validStatus(taskInfo));
+    console.log('UNIQUE ID :', this.uniqueTaskId(taskInfo, taskData));
+    
+    
+    if (taskInfo.hasOwnProperty('id') && 
+        taskInfo.hasOwnProperty('title') &&
+        taskInfo.hasOwnProperty('description') &&
+        taskInfo.hasOwnProperty('completed') &&
         this.validTitle(taskInfo) &&
-        this.validDescription(taskInfo) &&
+        this.validDesc(taskInfo) &&
         this.validStatus(taskInfo) &&
         this.uniqueTaskId(taskInfo, taskData)
        ) {
@@ -21,47 +29,49 @@ class validator {
         "message": "Task ID should be unique..:("
       }
     }
-
+    
     if (!this.validTitle(taskInfo)) {
       return {
         "status": false,
-        "message": "Title must be specified"
+        "message": "Task Title should be mentioned..:("
       }
     }
-
-    if (!this.validDescription(taskInfo)) {
+    
+    if (!this.validDesc(taskInfo)) {
       return {
         "status": false,
-        "message": "Description must be specified"
+        "message": "Task description should be mentioned..:("
       }
     }
-
+    
     if (!this.validStatus(taskInfo)) {
       return {
         "status": false,
-        "message": "Status must be of boolean type"
+        "message": "Task completion status should be of Boolean Type..:("
       }
     }
   }
 
   static uniqueTaskId(taskInfo, taskData) {
-    let taskId = taskData.tasks.some(task => task.id === taskInfo.id)
-    if (taskId) return true;
-    return false;
-  }
-
-  static validTitle(taskInfo) {
-    if (taskInfo.hasOwnProperty('title')) return true;
-    return false;
-  }
-
-  static validDescription(taskInfo) {
-    if (taskInfo.hasOwnProperty('description')) return true;
-    return false;
+    let taskId = taskData.some(task => task.id === taskInfo.id)
+    if (taskId) return false;
+    return true;
   }
 
   static validStatus(taskInfo) {
     if (typeof taskInfo.completed === 'boolean') return true;
     return false;
   }
+
+  static validTitle(taskInfo) {
+    if (!taskInfo.title) return false;
+    return true;
+  }
+
+  static validDesc(taskInfo) {
+    if (!taskInfo.description) return false;
+    return true;
+  }
 }
+
+module.exports = validator;
